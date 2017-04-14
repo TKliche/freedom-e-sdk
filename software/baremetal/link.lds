@@ -18,6 +18,19 @@ SECTIONS
 		*(.text)
 	} > ram
 
+	.rodata : {
+		. = ALIGN(8);
+		*(.rodata)
+	} > ram
+
+	. = ALIGN(8);
+	PROVIDE( _fbss = . );
+	.bss : {
+		*(.bss)
+		. = ALIGN(8);
+	} > ram
+	PROVIDE( _ebss = . );
+
 	.data : {
 		. = ALIGN(8);
 		*(.data)

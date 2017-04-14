@@ -1,6 +1,6 @@
-CFLAGS += -nostartfiles -nostdlib -fno-builtin -g -mcmodel=medany
+CFLAGS += -nostartfiles -nostdlib -fno-builtin -g -mcmodel=medany -I$(BSP_BASE)/include -I$(BSP_BASE)/env/$(BOARD)
 
-baremetal: main.c entry.s lock.s hartid.s link.lds
+baremetal: main.c entry.S lock.s hartid.s link.lds
 	$(CC) $(CFLAGS) -o $@ $(filter-out %.lds,$^) -T link.lds
 
 clean:

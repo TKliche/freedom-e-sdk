@@ -12,8 +12,8 @@ include $(extra_configs)
 endif
 
 # Default target
-BOARD ?= freedom-e300-hifive1
-PROGRAM ?= demo_gpio
+BOARD ?= freedom-e510-arty
+PROGRAM ?= baremetal
 
 # Variables the user probably shouldn't override.
 builddir := work/build
