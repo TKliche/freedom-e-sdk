@@ -8,18 +8,8 @@ _start:
 	la gp, _gp
 	la sp, _sp
 
-	/* Load data section */
-	la a0, _data_lma
-	la a1, _data
-	la a2, _edata
-	bgeu a1, a2, 2f
-1:
-	lw t0, (a0)
-	sw t0, (a1)
-	addi a0, a0, 4
-	addi a1, a1, 4
-	bltu a1, a2, 1b
-2:
+	csrr t0, mhartid
+1:bnez t0, 1b
 
 	/* Clear bss section */
 	la a0, __bss_start
@@ -46,6 +36,7 @@ _start:
 	fssr x0
 1:
 #endif
+
 
 	/* argc = argv = 0 */
 	li a0, 0
